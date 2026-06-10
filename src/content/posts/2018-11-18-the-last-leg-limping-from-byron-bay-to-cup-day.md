@@ -1,8 +1,8 @@
 ---
 title: 'The last leg: limping from Byron Bay to Cup Day'
-date: '2018-11-17'
+date: '2018-11-18'
 slug: the-last-leg-limping-from-byron-bay-to-cup-day
-permalink: 2018/11/17/the-last-leg-limping-from-byron-bay-to-cup-day
+permalink: 2018/11/18/the-last-leg-limping-from-byron-bay-to-cup-day
 excerpt: The last week of our Australian roadtrip was a real struggle. Our van Moby, which had been intermittently playing up since the Daintree rainforest, was now bein
 excerptHtml: |
   <p>The last week of our Australian roadtrip was a real struggle. Our van Moby, which had been intermittently playing up since the Daintree rainforest, was now being a total see-you-next-tuesday. Would we ever make it home?</p>

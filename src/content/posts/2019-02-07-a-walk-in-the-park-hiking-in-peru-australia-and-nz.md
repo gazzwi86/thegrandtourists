@@ -1,8 +1,8 @@
 ---
 title: 'A walk in the park: hiking in Peru, Australia and NZ'
-date: '2019-02-06'
+date: '2019-02-07'
 slug: a-walk-in-the-park-hiking-in-peru-australia-and-nz
-permalink: 2019/02/06/a-walk-in-the-park-hiking-in-peru-australia-and-nz
+permalink: 2019/02/07/a-walk-in-the-park-hiking-in-peru-australia-and-nz
 excerpt: I am a very lazy person. I only wash my hair once a week and even that is a considerable test of my strength and endurance. Conversely, I love multi-day hikes.
 excerptHtml: |
   <p>I am a very lazy person. I only wash my hair once a week and even that is a considerable test of my strength and endurance. Conversely, I love multi-day hikes.</p>

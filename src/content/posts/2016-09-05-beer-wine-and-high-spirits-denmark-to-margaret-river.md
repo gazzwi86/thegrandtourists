@@ -1,8 +1,8 @@
 ---
 title: 'Beer, wine and high spirits: Denmark to Margaret River'
-date: '2016-09-04'
+date: '2016-09-05'
 slug: beer-wine-and-high-spirits-denmark-to-margaret-river
-permalink: 2016/09/04/beer-wine-and-high-spirits-denmark-to-margaret-river
+permalink: 2016/09/05/beer-wine-and-high-spirits-denmark-to-margaret-river
 excerpt: Shaking off our hangovers with a dip at the stunning Elephant Rocks in Denmark, we wind our way through forests of giant tingle trees, backwoods vineyards and b
 excerptHtml: |
   <p>Shaking off our hangovers with a dip at the stunning Elephant Rocks in Denmark, we wind our way through forests of giant tingle trees, backwoods vineyards and breweries in time for wine o&#8217;clock at Margaret River.</p>

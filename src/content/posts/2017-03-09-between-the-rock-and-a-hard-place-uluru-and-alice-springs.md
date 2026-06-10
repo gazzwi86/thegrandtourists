@@ -1,8 +1,8 @@
 ---
 title: 'Between the Rock and a hard place: Uluru and Alice Springs'
-date: '2017-03-08'
+date: '2017-03-09'
 slug: between-the-rock-and-a-hard-place-uluru-and-alice-springs
-permalink: 2017/03/08/between-the-rock-and-a-hard-place-uluru-and-alice-springs
+permalink: 2017/03/09/between-the-rock-and-a-hard-place-uluru-and-alice-springs
 excerpt: We travel 1,645 km from the Top End to the Red Centre of Australia just to see the mighty Uluru and Kata Tjuta monoliths. It was totes worth it.
 excerptHtml: |
   <p>We travel 1,645 km from the Top End to the Red Centre of Australia just to see the mighty Uluru and Kata Tjuta monoliths. It was totes worth it.</p>

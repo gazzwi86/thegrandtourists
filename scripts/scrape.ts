@@ -228,10 +228,8 @@ async function main() {
   let written = 0
 
   for (const post of data.posts) {
-    const dateObj = new Date(post.date)
-    const yyyy = String(dateObj.getUTCFullYear())
-    const mm = String(dateObj.getUTCMonth() + 1).padStart(2, '0')
-    const dd = String(dateObj.getUTCDate()).padStart(2, '0')
+    // Extract date from API's local-time string directly (avoids UTC timezone offset shifting the day)
+    const [yyyy, mm, dd] = post.date.substring(0, 10).split('-')
     const permalink = `${yyyy}/${mm}/${dd}/${post.slug}`
 
     const $ = cheerio.load(post.content || '', { xmlMode: false })
