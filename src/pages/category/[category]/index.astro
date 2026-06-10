@@ -25,7 +25,10 @@ const { posts, hasNext } = paginatePosts(allCatPosts, 1)
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
-        <h1 class="archive-title">{categoryLabel}</h1>
+        <h1 class="archive-title">
+          <span class="archive-label">Category</span>
+          {categoryLabel}
+        </h1>
         <div class="post-grid">
           {
             posts.map((post) => (

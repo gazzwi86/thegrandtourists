@@ -6,6 +6,7 @@ import '@fontsource/lato/700.css'
 import '@fontsource/lato/400-italic.css'
 import '@fontsource/neuton/400.css'
 import '@fontsource/neuton/400-italic.css'
+import '@fontsource/oswald/400.css'
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_URL, SITE_TITLE, SITE_TAGLINE, GA4_ID } from '../config/site'
@@ -15,6 +16,8 @@ interface Props {
   description: string
   canonicalUrl?: string
   ogImage?: string
+  ogImageWidth?: number
+  ogImageHeight?: number
   type?: 'website' | 'article'
   showHero?: boolean
   article?: { publishedTime: string; modifiedTime?: string; tags: string[] }
@@ -24,7 +27,9 @@ const {
   title,
   description,
   canonicalUrl = Astro.url.href,
-  ogImage = '/images/2019/02/img_3684-1.webp',
+  ogImage = '/images/2019/02/img_3684-1-1200.webp',
+  ogImageWidth = 1200,
+  ogImageHeight = 800,
   type = 'website',
   showHero = false,
   article
@@ -53,8 +58,8 @@ const ogImageUrl = new URL(ogImage, Astro.site || SITE_URL).href
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

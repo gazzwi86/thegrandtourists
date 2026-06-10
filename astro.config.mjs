@@ -7,8 +7,7 @@ export default defineConfig({
   site: 'https://thegrandtourists.net',
   integrations: [
     sitemap({
-      filter: (page) =>
-        !page.includes('/page/') && !page.includes('/category/'),
+      filter: (page) => !page.includes('/page/'),
     }),
     pagefind(),
   ],

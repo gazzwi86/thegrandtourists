@@ -1,5 +1,4 @@
 export const SITE_URL = 'https://thegrandtourists.net'
-export const HERO_IMAGE = '/images/2016/10/img_3316-1200.webp'
 export const SITE_TITLE = 'The Grand Tourists'
 export const SITE_TAGLINE = 'Dreams, waking thoughts and incidents on the road'
 export const GA4_ID = import.meta.env.PUBLIC_GA4_ID ?? ''

@@ -2,21 +2,77 @@
 import Base from '../layouts/Base.astro'
 import PostCard from '../components/PostCard.astro'
 import Sidebar from '../components/Sidebar.astro'
-import { getSortedPosts, paginatePosts } from '../lib/posts'
-import { SITE_TITLE, SITE_TAGLINE } from '../config/site'
+import { getSortedPosts, paginatePosts, formatDate } from '../lib/posts'
+import { SITE_TITLE, SITE_TAGLINE, CATEGORIES } from '../config/site'
 
 const allPosts = await getSortedPosts()
 const { posts, hasNext } = paginatePosts(allPosts, 1)
+
+const heroPost = posts[0]
+const remainingPosts = posts.slice(1)
 ---
 
 <Base title={SITE_TITLE} description={SITE_TAGLINE} showHero={true}>
   {hasNext && <link slot="head" rel="next" href="/page/2/" />}
+  {
+    heroPost?.data.featuredImage && (
+      <link
+        slot="head"
+        rel="preload"
+        as="image"
+        href={heroPost.data.featuredImage}
+        fetchpriority="high"
+      />
+    )
+  }
+
+  <!-- Hero: most recent post as full-width background -->
+  {
+    heroPost?.data.featuredImage && (
+      <section
+        class="hero-post"
+        style={`background-image: url('${heroPost.data.featuredImage}')`}
+        aria-label="Featured post"
+      >
+        <div class="container">
+          <div class="hero-post__inner">
+            <div class="hero-post__meta">
+              <time datetime={heroPost.data.date.toISOString()}>
+                {formatDate(heroPost.data.date)}
+              </time>
+              {heroPost.data.categories.map((cat: string) => (
+                <>
+                  <span aria-hidden="true">&middot;</span>
+                  <a
+                    href={`/category/${cat}/`}
+                    class="category-pill"
+                    style="color: rgba(255,255,255,0.85)"
+                    aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+                  >
+                    {CATEGORIES[cat] ?? cat}
+                  </a>
+                </>
+              ))}
+            </div>
+            <h2 class="hero-post__title">
+              <a href={`/${heroPost.data.permalink}/`}>{heroPost.data.title}</a>
+            </h2>
+            <a href={`/${heroPost.data.permalink}/`} class="hero-continue-reading">
+              Continue reading &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Remaining posts + sidebar -->
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
         <div class="post-grid">
           {
-            posts.map((post) => (
+            remainingPosts.map((post) => (
               <PostCard
                 title={post.data.title}
                 permalink={post.data.permalink}

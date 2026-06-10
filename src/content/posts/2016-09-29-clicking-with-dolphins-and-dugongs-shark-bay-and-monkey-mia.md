@@ -3,7 +3,7 @@ title: 'Clicking with dolphins and dugongs: Shark Bay and Monkey Mia'
 date: '2016-09-29'
 slug: clicking-with-dolphins-and-dugongs-shark-bay-and-monkey-mia
 permalink: 2016/09/29/clicking-with-dolphins-and-dugongs-shark-bay-and-monkey-mia
-excerpt: Travelling to the westernmost point of Australia, we visit world heritage listed Shark Bay and Monkey Mia, where you can handfeed dolphins and see living fossil
+excerpt: Travelling to the westernmost point of Australia, we visit world heritage listed Shark Bay and Monkey Mia, where you can handfeed dolphins and see living fossils.
 excerptHtml: |
   <p>Travelling to the westernmost point of Australia, we visit world heritage listed Shark Bay and<br />
   Monkey Mia, where you can handfeed dolphins and see living fossils.</p>

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
     for (let page = 2; page <= totalPages; page++) {
       paths.push({
         params: { category: slug, page: String(page) },
-        props: { page },
+        props: { page }
       })
     }
   }
@@ -33,40 +33,60 @@ const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allCatPosts, page)
   description={`Travel posts about ${categoryLabel}, page ${page}`}
 >
   <!-- rel=prev/next for SEO -->
-  {hasPrev && (
-    <link slot="head" rel="prev" href={page === 2 ? `/category/${category}/` : `/category/${category}/page/${page - 1}/`} />
-  )}
-  {hasNext && (
-    <link slot="head" rel="next" href={`/category/${category}/page/${page + 1}/`} />
-  )}
+  {
+    hasPrev && (
+      <link
+        slot="head"
+        rel="prev"
+        href={page === 2 ? `/category/${category}/` : `/category/${category}/page/${page - 1}/`}
+      />
+    )
+  }
+  {hasNext && <link slot="head" rel="next" href={`/category/${category}/page/${page + 1}/`} />}
 
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
-        <h1 class="archive-title">{categoryLabel}</h1>
+        <h1 class="archive-title">
+          <span class="archive-label">Category</span>
+          {categoryLabel}
+        </h1>
         <div class="post-grid">
-          {posts.map((post) => (
-            <PostCard
-              title={post.data.title}
-              permalink={post.data.permalink}
-              date={post.data.date}
-              excerpt={post.data.excerpt}
-              featuredImage={post.data.featuredImage}
-              featuredImageAlt={post.data.featuredImageAlt}
-              categories={post.data.categories}
-            />
-          ))}
+          {
+            posts.map((post) => (
+              <PostCard
+                title={post.data.title}
+                permalink={post.data.permalink}
+                date={post.data.date}
+                excerpt={post.data.excerpt}
+                featuredImage={post.data.featuredImage}
+                featuredImageAlt={post.data.featuredImageAlt}
+                categories={post.data.categories}
+              />
+            ))
+          }
         </div>
         <nav class="pagination" aria-label="Page navigation">
-          {hasPrev && (
-            <a href={page === 2 ? `/category/${category}/` : `/category/${category}/page/${page - 1}/`} aria-label="Previous page">
-              &larr; Newer
-            </a>
-          )}
+          {
+            hasPrev && (
+              <a
+                href={
+                  page === 2 ? `/category/${category}/` : `/category/${category}/page/${page - 1}/`
+                }
+                aria-label="Previous page"
+              >
+                &larr; Newer
+              </a>
+            )
+          }
           <span class="current">{page} / {totalPages}</span>
-          {hasNext && (
-            <a href={`/category/${category}/page/${page + 1}/`} aria-label="Next page">Older &rarr;</a>
-          )}
+          {
+            hasNext && (
+              <a href={`/category/${category}/page/${page + 1}/`} aria-label="Next page">
+                Older &rarr;
+              </a>
+            )
+          }
         </nav>
       </div>
       <Sidebar />

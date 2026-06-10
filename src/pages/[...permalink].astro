@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro'
 import Sidebar from '../components/Sidebar.astro'
-import { getSortedPosts, formatDate, buildSrcset } from '../lib/posts'
+import { getSortedPosts, formatDate } from '../lib/posts'
 import { SITE_URL, CATEGORIES } from '../config/site'
 
 export async function getStaticPaths() {
@@ -23,13 +23,19 @@ const {
   excerpt,
   body,
   featuredImage,
-  featuredImageAlt,
   featuredImageWidth,
   featuredImageHeight,
   categories,
   tags,
   permalink
 } = post.data
+
+const MAX_OG_DIM = 1440
+const ogWidth = featuredImageWidth ? Math.min(featuredImageWidth, MAX_OG_DIM) : undefined
+const ogHeight =
+  featuredImageHeight && featuredImageWidth && featuredImageWidth > MAX_OG_DIM
+    ? Math.round((featuredImageHeight * MAX_OG_DIM) / featuredImageWidth)
+    : featuredImageHeight
 
 const postUrl = `${SITE_URL}/${permalink}/`
 
@@ -42,46 +48,75 @@ const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
   description={excerpt}
   canonicalUrl={postUrl}
   ogImage={featuredImage}
+  ogImageWidth={ogWidth}
+  ogImageHeight={ogHeight}
   type="article"
+  showHero={!!featuredImage}
   article={{
     publishedTime: date.toISOString(),
     tags: tags ?? []
   }}
 >
+  {
+    featuredImage && (
+      <link slot="head" rel="preload" as="image" href={featuredImage} fetchpriority="high" />
+    )
+  }
+  {
+    featuredImage && (
+      <section
+        class="post-hero"
+        style={`background-image: url('${featuredImage}')`}
+        aria-label="Post header"
+      >
+        <div class="container">
+          <div class="post-hero__inner">
+            <div class="post-meta">
+              <time datetime={date.toISOString()}>{formatDate(date)}</time>
+              {categories.map((cat: string) => (
+                <>
+                  <span aria-hidden="true">&middot;</span>
+                  <a
+                    href={`/category/${cat}/`}
+                    class="category-pill"
+                    style="color: rgba(255,255,255,0.85)"
+                    aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+                  >
+                    {CATEGORIES[cat] ?? cat}
+                  </a>
+                </>
+              ))}
+            </div>
+            <h1 class="post-title">{title}</h1>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <div class="container site-body">
     <div class="two-col">
       <article class="main-content">
-        <header class="post-header">
-          <div class="post-meta">
-            <time datetime={date.toISOString()}>{formatDate(date)}</time>
-            {
-              categories.map((cat: string) => (
-                <a
-                  href={`/category/${cat}/`}
-                  class="category-pill"
-                  aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
-                >
-                  {CATEGORIES[cat] ?? cat}
-                </a>
-              ))
-            }
-          </div>
-          <h1 class="post-title">{title}</h1>
-        </header>
-
         {
-          featuredImage && (
-            <img
-              class="post-featured-image"
-              src={featuredImage}
-              srcset={buildSrcset(featuredImage)}
-              sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"
-              alt={featuredImageAlt || title}
-              width={featuredImageWidth || 1200}
-              height={featuredImageHeight || 630}
-              loading="eager"
-              fetchpriority="high"
-            />
+          !featuredImage && (
+            <header class="post-header">
+              <div class="post-meta">
+                <time datetime={date.toISOString()}>{formatDate(date)}</time>
+                {categories.map((cat: string) => (
+                  <>
+                    <span aria-hidden="true">&middot;</span>
+                    <a
+                      href={`/category/${cat}/`}
+                      class="category-pill"
+                      aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+                    >
+                      {CATEGORIES[cat] ?? cat}
+                    </a>
+                  </>
+                ))}
+              </div>
+              <h1 class="post-title">{title}</h1>
+            </header>
           )
         }
 

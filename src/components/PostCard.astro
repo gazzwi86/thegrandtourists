@@ -1,5 +1,5 @@
 ---
-import { formatDate, buildSrcset } from '../lib/posts'
+import { formatDate } from '../lib/posts'
 import { CATEGORIES } from '../config/site'
 
 interface Props {
@@ -26,45 +26,49 @@ const postUrl = `/${permalink}/`
 ---
 
 <article class="post-card">
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {
+        categories.map((cat) => (
+          <>
+            <span aria-hidden="true">&middot;</span>
+            <a
+              href={`/category/${cat}/`}
+              class="category-pill"
+              aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+            >
+              {CATEGORIES[cat] ?? cat}
+            </a>
+          </>
+        ))
+      }
+    </div>
+
+    <h2 class="post-card__title">
+      <a href={postUrl}>{title}</a>
+    </h2>
+
+    <div class="post-card__excerpt">
+      <p>{excerpt}</p>
+    </div>
+
+    <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}>
+      Continue reading &rarr;
+    </a>
+  </div>
+
   {
     featuredImage && (
-      <a href={postUrl} tabindex="-1" aria-hidden="true">
+      <a href={postUrl} tabindex="-1" aria-hidden="true" class="post-card__thumb">
         <img
-          class="post-card__image"
-          src={featuredImage}
-          srcset={buildSrcset(featuredImage)}
-          sizes="(max-width: 600px) 600px, (max-width: 900px) 672px, 672px"
-          alt={featuredImageAlt}
+          src={featuredImage.replace(/\.webp$/, '-600.webp')}
+          alt={featuredImageAlt || ''}
           loading="lazy"
-          width="672"
-          height="220"
+          width="144"
+          height="144"
         />
       </a>
     )
   }
-
-  <div class="post-card__meta">
-    <time datetime={date.toISOString()}>{formatDate(date)}</time>
-    {
-      categories.map((cat) => (
-        <a
-          href={`/category/${cat}/`}
-          class="category-pill"
-          aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
-        >
-          {CATEGORIES[cat] ?? cat}
-        </a>
-      ))
-    }
-  </div>
-
-  <h2 class="post-card__title">
-    <a href={postUrl}>{title}</a>
-  </h2>
-
-  <div class="post-card__excerpt">
-    <p>{excerpt}</p>
-  </div>
-
-  <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}> Read more &rarr; </a>
 </article>
