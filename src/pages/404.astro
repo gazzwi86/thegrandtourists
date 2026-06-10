@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro'
+import { SITE_TITLE } from '../config/site'
+---
+
+<Base
+  title={`Page not found | ${SITE_TITLE}`}
+  description="The page you were looking for could not be found."
+>
+  <div class="container site-body">
+    <div class="error-page">
+      <h1>404</h1>
+      <p>Looks like you've taken a wrong turn on the road trip.</p>
+      <p><a href="/">Head back to the homepage &rarr;</a></p>
+    </div>
+  </div>
+</Base>

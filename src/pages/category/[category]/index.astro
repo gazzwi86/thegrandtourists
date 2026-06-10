@@ -1,0 +1,50 @@
+---
+import Base from '../../../layouts/Base.astro'
+import PostCard from '../../../components/PostCard.astro'
+import Sidebar from '../../../components/Sidebar.astro'
+import { getPostsByCategory, paginatePosts } from '../../../lib/posts'
+import { SITE_TITLE, CATEGORIES } from '../../../config/site'
+
+export async function getStaticPaths() {
+  return Object.keys(CATEGORIES).map((slug) => ({
+    params: { category: slug },
+  }))
+}
+
+const { category } = Astro.params
+const categoryLabel = CATEGORIES[category as string] ?? category
+const allCatPosts = await getPostsByCategory(category as string)
+const { posts, hasNext } = paginatePosts(allCatPosts, 1)
+---
+
+<Base
+  title={`${categoryLabel} | ${SITE_TITLE}`}
+  description={`Travel posts about ${categoryLabel}`}
+>
+  <div class="container site-body">
+    <div class="two-col">
+      <div class="main-content">
+        <h1 class="archive-title">{categoryLabel}</h1>
+        <div class="post-grid">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              permalink={post.data.permalink}
+              date={post.data.date}
+              excerpt={post.data.excerpt}
+              featuredImage={post.data.featuredImage}
+              featuredImageAlt={post.data.featuredImageAlt}
+              categories={post.data.categories}
+            />
+          ))}
+        </div>
+        {hasNext && (
+          <nav class="pagination" aria-label="Page navigation">
+            <a href={`/category/${category}/page/2/`} aria-label="Next page">Older posts &rarr;</a>
+          </nav>
+        )}
+      </div>
+      <Sidebar />
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro'
+import Sidebar from '../components/Sidebar.astro'
+import { getSortedPosts, formatDate } from '../lib/posts'
+import { SITE_TITLE, SITE_URL, CATEGORIES } from '../config/site'
+
+export async function getStaticPaths() {
+  const posts = await getSortedPosts()
+  return posts
+    .filter((post) => {
+      const p = post.data.permalink
+      // Guard: prevent collision with named routes
+      return !p.startsWith('page/') && !p.startsWith('category/')
+    })
+    .map((post) => ({
+      params: { permalink: post.data.permalink },
+      props: { post },
+    }))
+}
+
+const { post } = Astro.props
+const { title, date, excerpt, body, featuredImage, featuredImageAlt, featuredImageWidth, featuredImageHeight, categories, tags, permalink } = post.data
+
+const postUrl = `${SITE_URL}/${permalink}/`
+
+// Prev/next navigation
+const allPosts = await getSortedPosts()
+const currentIndex = allPosts.findIndex((p) => p.data.permalink === permalink)
+const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
+---
+
+<Base
+  title={title}
+  description={excerpt}
+  canonicalUrl={postUrl}
+  ogImage={featuredImage}
+  type="article"
+  article={{
+    publishedTime: date.toISOString(),
+    tags: tags ?? [],
+  }}
+>
+  <div class="container site-body">
+    <div class="two-col">
+      <article class="main-content">
+        <header class="post-header">
+          <div class="post-meta">
+            <time datetime={date.toISOString()}>{formatDate(date)}</time>
+            {categories.map((cat: string) => (
+              <a
+                href={`/category/${cat}/`}
+                class="category-pill"
+                aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+              >
+                {CATEGORIES[cat] ?? cat}
+              </a>
+            ))}
+          </div>
+          <h1 class="post-title">{title}</h1>
+        </header>
+
+        {featuredImage && (
+          <img
+            class="post-featured-image"
+            src={featuredImage}
+            alt={featuredImageAlt || title}
+            width={featuredImageWidth || 1200}
+            height={featuredImageHeight || 630}
+            loading="eager"
+            fetchpriority="high"
+          />
+        )}
+
+        <div class="entry-content">
+          <Fragment set:html={body} />
+        </div>
+
+        {tags && tags.length > 0 && (
+          <footer class="post-tags" aria-label="Post tags">
+            {tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </footer>
+        )}
+
+        <nav class="post-nav" aria-label="Post navigation">
+          {prevPost ? (
+            <a href={`/${prevPost.data.permalink}/`} rel="prev">
+              &larr; {prevPost.data.title}
+            </a>
+          ) : <span />}
+          {nextPost && (
+            <a href={`/${nextPost.data.permalink}/`} rel="next">
+              {nextPost.data.title} &rarr;
+            </a>
+          )}
+        </nav>
+      </article>
+
+      <Sidebar />
+    </div>
+  </div>
+</Base>

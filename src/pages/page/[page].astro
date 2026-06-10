@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro'
+import PostCard from '../../components/PostCard.astro'
+import Sidebar from '../../components/Sidebar.astro'
+import { getSortedPosts, paginatePosts } from '../../lib/posts'
+import { SITE_TITLE, SITE_TAGLINE } from '../../config/site'
+
+export async function getStaticPaths() {
+  const allPosts = await getSortedPosts()
+  const perPage = 10
+  const totalPages = Math.ceil(allPosts.length / perPage)
+
+  // Page 1 is the homepage — generate /page/2/ through /page/N/
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const page = i + 2
+    return {
+      params: { page: String(page) },
+      props: { page },
+    }
+  })
+}
+
+const { page } = Astro.props
+const allPosts = await getSortedPosts()
+const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allPosts, page)
+---
+
+<Base
+  title={`Page ${page} | ${SITE_TITLE}`}
+  description={SITE_TAGLINE}
+>
+  <div class="container site-body">
+    <div class="two-col">
+      <div class="main-content">
+        <div class="post-grid">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              permalink={post.data.permalink}
+              date={post.data.date}
+              excerpt={post.data.excerpt}
+              featuredImage={post.data.featuredImage}
+              featuredImageAlt={post.data.featuredImageAlt}
+              categories={post.data.categories}
+            />
+          ))}
+        </div>
+        <nav class="pagination" aria-label="Page navigation">
+          {hasPrev && (
+            <a href={page === 2 ? '/' : `/page/${page - 1}/`} aria-label="Previous page">
+              &larr; Newer
+            </a>
+          )}
+          <span class="current">{page} / {totalPages}</span>
+          {hasNext && (
+            <a href={`/page/${page + 1}/`} aria-label="Next page">
+              Older &rarr;
+            </a>
+          )}
+        </nav>
+      </div>
+      <Sidebar />
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,66 @@
+---
+import { formatDate } from '../lib/posts'
+import { CATEGORIES } from '../config/site'
+
+interface Props {
+  title: string
+  permalink: string
+  date: Date
+  excerpt: string
+  featuredImage?: string
+  featuredImageAlt?: string
+  categories?: string[]
+}
+
+const {
+  title,
+  permalink,
+  date,
+  excerpt,
+  featuredImage,
+  featuredImageAlt = '',
+  categories = [],
+} = Astro.props
+
+const postUrl = `/${permalink}/`
+---
+
+<article class="post-card">
+  {featuredImage && (
+    <a href={postUrl} tabindex="-1" aria-hidden="true">
+      <img
+        class="post-card__image"
+        src={featuredImage}
+        alt={featuredImageAlt}
+        loading="lazy"
+        width="672"
+        height="220"
+      />
+    </a>
+  )}
+
+  <div class="post-card__meta">
+    <time datetime={date.toISOString()}>{formatDate(date)}</time>
+    {categories.map((cat) => (
+      <a
+        href={`/category/${cat}/`}
+        class="category-pill"
+        aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+      >
+        {CATEGORIES[cat] ?? cat}
+      </a>
+    ))}
+  </div>
+
+  <h2 class="post-card__title">
+    <a href={postUrl}>{title}</a>
+  </h2>
+
+  <div class="post-card__excerpt">
+    <p>{excerpt}</p>
+  </div>
+
+  <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}>
+    Read more &rarr;
+  </a>
+</article>

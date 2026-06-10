@@ -1,0 +1,79 @@
+---
+import { SIDEBAR_STATS, ABOUT_TEXT, SOCIAL } from '../config/site'
+---
+
+<aside class="sidebar" aria-label="Sidebar">
+
+  <!-- Roadtrip stats widget -->
+  <div class="sidebar-widget">
+    <h3>Our Aussie Roadtrip</h3>
+    <ul class="stats-list">
+      <li>
+        <span>Days travelled</span>
+        <span class="stats-number">{SIDEBAR_STATS.daysTravelled}</span>
+      </li>
+      <li>
+        <span>Kilometres driven</span>
+        <span class="stats-number">{SIDEBAR_STATS.kilometresTravelled.toLocaleString('en-AU')}</span>
+      </li>
+      <li>
+        <span>Free camps</span>
+        <span class="stats-number">{SIDEBAR_STATS.freeCamps}</span>
+      </li>
+      <li>
+        <span>Paid camps</span>
+        <span class="stats-number">{SIDEBAR_STATS.paidCamps}</span>
+      </li>
+      <li>
+        <span>Pies eaten</span>
+        <span class="stats-number">{SIDEBAR_STATS.piesEaten}</span>
+      </li>
+      <li>
+        <span>Tantrums thrown</span>
+        <span class="stats-number">{SIDEBAR_STATS.tantrumsThrown}</span>
+      </li>
+      <li>
+        <span>Bush toilets used</span>
+        <span class="stats-number">{SIDEBAR_STATS.bushToilets}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- About widget -->
+  <div class="sidebar-widget">
+    <h3>About Us</h3>
+    <p class="about-text">{ABOUT_TEXT}</p>
+  </div>
+
+  <!-- Search widget (Pagefind) -->
+  <div class="sidebar-widget">
+    <h3>Search</h3>
+    <div id="search" aria-label="Search posts"></div>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script>
+      // Pagefind UI initialised after DOM ready
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof window !== 'undefined' && (window as any).PagefindUI) {
+          new (window as any).PagefindUI({
+            element: '#search',
+            showSubResults: false,
+            resetStyles: false,
+          })
+        }
+      })
+    </script>
+    <script src="/pagefind/pagefind-ui.js"></script>
+  </div>
+
+  <!-- Social links -->
+  <div class="sidebar-widget">
+    <h3>Follow Along</h3>
+    <div class="social-links">
+      <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">Instagram</a>
+      <a href={SOCIAL.twitter} target="_blank" rel="noopener noreferrer" aria-label="Follow on Twitter">Twitter</a>
+      <a href={SOCIAL.flickr} target="_blank" rel="noopener noreferrer" aria-label="View photos on Flickr">Flickr</a>
+      <a href={SOCIAL.pinterest} target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest">Pinterest</a>
+    </div>
+  </div>
+
+</aside>

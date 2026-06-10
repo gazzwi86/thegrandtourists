@@ -1,0 +1,134 @@
+---
+import '../styles/global.css'
+import '@fontsource/abril-fatface/400.css'
+import '@fontsource/lato/400.css'
+import '@fontsource/lato/700.css'
+import '@fontsource/lato/400-italic.css'
+import '@fontsource/neuton/400.css'
+import '@fontsource/neuton/400-italic.css'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import { SITE_URL, SITE_TITLE, SITE_TAGLINE, GA4_ID } from '../config/site'
+
+interface Props {
+  title: string
+  description: string
+  canonicalUrl?: string
+  ogImage?: string
+  type?: 'website' | 'article'
+  showHero?: boolean
+  article?: { publishedTime: string; modifiedTime?: string; tags: string[] }
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  ogImage = '/og-default.jpg',
+  type = 'website',
+  showHero = false,
+  article,
+} = Astro.props
+
+const siteName = SITE_TITLE
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`
+const ogImageUrl = new URL(ogImage, Astro.site || SITE_URL).href
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:site" content="@grandtourists" />
+
+    {article && (
+      <>
+        <meta property="article:published_time" content={article.publishedTime} />
+        {article.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime} />}
+        {article.tags.map((tag) => <meta property="article:tag" content={tag} />)}
+      </>
+    )}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- JSON-LD -->
+    {type === 'article' && article ? (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        datePublished: article.publishedTime,
+        dateModified: article.modifiedTime || article.publishedTime,
+        author: { '@type': 'Person', name: 'Shelley & Gareth', url: SITE_URL },
+        publisher: {
+          '@type': 'Organization',
+          name: SITE_TITLE,
+          url: SITE_URL,
+          logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
+        },
+        image: ogImageUrl,
+        description: description,
+        keywords: article.tags.join(', '),
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+      })} />
+    ) : (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: SITE_TITLE,
+        description: SITE_TAGLINE,
+        url: SITE_URL,
+        author: { '@type': 'Person', name: 'Shelley & Gareth' },
+      })} />
+    )}
+
+    <!-- Google Analytics (conditional) -->
+    {GA4_ID && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+        <script is:inline define:vars={{ GA4_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA4_ID);
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <!-- Skip to main content (WCAG 2.4.1) -->
+    <a href="#main-content" class="sr-only focus-visible">Skip to main content</a>
+
+    <Nav showHero={showHero} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

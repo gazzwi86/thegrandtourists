@@ -1,0 +1,1 @@
+npm run typecheck && npx astro check && npm test

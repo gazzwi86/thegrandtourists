@@ -1,0 +1,17 @@
+---
+import { SITE_TITLE, SOCIAL } from '../config/site'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <p>
+      &copy; {year} {SITE_TITLE} &mdash;
+      <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">Instagram</a> &middot;
+      <a href={SOCIAL.twitter} target="_blank" rel="noopener noreferrer" aria-label="Follow on Twitter">Twitter</a> &middot;
+      <a href={SOCIAL.flickr} target="_blank" rel="noopener noreferrer" aria-label="View photos on Flickr">Flickr</a> &middot;
+      <a href={SOCIAL.pinterest} target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest">Pinterest</a>
+    </p>
+  </div>
+</footer>
