@@ -14,7 +14,7 @@ const posts = defineCollection({
     slug: z.string(),
     permalink: z.string(),
     excerpt: z.string(),
-    excerptHtml: z.string().optional(),
+    excerptHtml: z.string(),
     body: z.string(),
     featuredImage: z.string().optional(),
     featuredImageWidth: z.number().optional(),

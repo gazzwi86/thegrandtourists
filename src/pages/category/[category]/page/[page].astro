@@ -3,7 +3,7 @@ import Base from '../../../../layouts/Base.astro'
 import PostCard from '../../../../components/PostCard.astro'
 import Sidebar from '../../../../components/Sidebar.astro'
 import { getPostsByCategory, paginatePosts } from '../../../../lib/posts'
-import { SITE_TITLE, CATEGORIES } from '../../../../config/site'
+import { CATEGORIES } from '../../../../config/site'
 
 export async function getStaticPaths() {
   const paths = []
@@ -29,7 +29,7 @@ const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allCatPosts, page)
 ---
 
 <Base
-  title={`${categoryLabel} — Page ${page} | ${SITE_TITLE}`}
+  title={`${categoryLabel} — Page ${page}`}
   description={`Travel posts about ${categoryLabel}, page ${page}`}
 >
   <!-- rel=prev/next for SEO -->
@@ -58,7 +58,7 @@ const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allCatPosts, page)
                 title={post.data.title}
                 permalink={post.data.permalink}
                 date={post.data.date}
-                excerpt={post.data.excerpt}
+                excerptHtml={post.data.excerptHtml}
                 featuredImage={post.data.featuredImage}
                 featuredImageAlt={post.data.featuredImageAlt}
                 categories={post.data.categories}

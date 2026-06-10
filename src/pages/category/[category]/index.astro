@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro'
 import PostCard from '../../../components/PostCard.astro'
 import Sidebar from '../../../components/Sidebar.astro'
 import { getPostsByCategory, paginatePosts } from '../../../lib/posts'
-import { SITE_TITLE, CATEGORIES } from '../../../config/site'
+import { CATEGORIES } from '../../../config/site'
 
 export async function getStaticPaths() {
   return Object.keys(CATEGORIES).map((slug) => ({
@@ -17,10 +17,7 @@ const allCatPosts = await getPostsByCategory(category as string)
 const { posts, hasNext } = paginatePosts(allCatPosts, 1)
 ---
 
-<Base
-  title={`${categoryLabel} | ${SITE_TITLE}`}
-  description={`Travel posts about ${categoryLabel}`}
->
+<Base title={categoryLabel} description={`Travel posts about ${categoryLabel}`}>
   {hasNext && <link slot="head" rel="next" href={`/category/${category}/page/2/`} />}
   <div class="container site-body">
     <div class="two-col">
@@ -36,7 +33,7 @@ const { posts, hasNext } = paginatePosts(allCatPosts, 1)
                 title={post.data.title}
                 permalink={post.data.permalink}
                 date={post.data.date}
-                excerpt={post.data.excerpt}
+                excerptHtml={post.data.excerptHtml}
                 featuredImage={post.data.featuredImage}
                 featuredImageAlt={post.data.featuredImageAlt}
                 categories={post.data.categories}

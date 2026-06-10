@@ -195,6 +195,9 @@ th {
   .two-col {
     grid-template-columns: 1fr;
   }
+  .sidebar {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -311,6 +314,13 @@ th {
 .has-hero .nav-list a[aria-current='page'],
 .has-hero .nav-list a.active {
   color: #ffffff;
+}
+
+.has-hero .nav-list a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* ── Homepage Hero Post ───────────────────────────────────────── */
@@ -538,7 +548,7 @@ th {
 /* Hero post page: white title overlaid on image */
 .post-hero {
   position: relative;
-  min-height: 480px;
+  min-height: 600px;
   background-size: cover;
   background-position: 50% 50%;
   display: flex;
@@ -812,7 +822,11 @@ th {
 
 .sr-only.focus-visible:focus,
 .focus-visible:focus {
-  position: static;
+  position: fixed; /* fixed keeps it out of normal flow — no layout shift on hero pages */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20; /* above .site-header.has-hero (z-index: 10) */
   width: auto;
   height: auto;
   padding: 0.5rem 1rem;

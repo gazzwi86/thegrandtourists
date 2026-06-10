@@ -3,9 +3,9 @@ title: 'Trouble on the Oodnadatta Track: Marree to Lake Eyre South'
 date: '2016-08-11'
 slug: trouble-on-the-oodnadatta-track
 permalink: 2016/08/11/trouble-on-the-oodnadatta-track
-excerpt: The Ooodnadatta Track brings both beauty and horror as we explore a surreal sculpture park and the salt flats of Lake Eyre South. A midnight scare at an abandon
+excerpt: The Oodnadatta Track brings both beauty and horror as we explore a surreal sculpture park and the salt flats of Lake Eyre South. A midnight scare at an abandon
 excerptHtml: |
-  <p>The Ooodnadatta Track brings both beauty and horror as we explore a surreal sculpture park and the salt flats of Lake Eyre South. A midnight scare at an abandoned railway siding threatens our whole roadtrip.</p>
+  <p>The Oodnadatta Track brings both beauty and horror as we explore a surreal sculpture park and the salt flats of Lake Eyre South. A midnight scare at an abandoned railway siding threatens our whole roadtrip.</p>
 featuredImage: /images/2016/08/oodnadatta-road_fotor.webp
 featuredImageWidth: 5184
 featuredImageHeight: 3456

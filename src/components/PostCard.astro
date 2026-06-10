@@ -6,7 +6,7 @@ interface Props {
   title: string
   permalink: string
   date: Date
-  excerpt: string
+  excerptHtml: string
   featuredImage?: string
   featuredImageAlt?: string
   categories?: string[]
@@ -16,7 +16,7 @@ const {
   title,
   permalink,
   date,
-  excerpt,
+  excerptHtml,
   featuredImage,
   featuredImageAlt = '',
   categories = []
@@ -50,7 +50,7 @@ const postUrl = `/${permalink}/`
     </h2>
 
     <div class="post-card__excerpt">
-      <p>{excerpt}</p>
+      <Fragment set:html={excerptHtml} />
     </div>
 
     <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}>

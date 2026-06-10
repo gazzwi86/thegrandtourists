@@ -141,6 +141,10 @@ const ogImageUrl = new URL(ogImage, Astro.site || SITE_URL).href
       )
     }
 
+    <!-- Pagefind search UI CSS — in head to avoid CLS from body-link reflow. -->
+    <!-- This file is generated at build time; it 404s in dev mode (harmless, non-blocking). -->
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
     <!-- Named head slot for rel=prev/next and other per-page head tags -->
     <slot name="head" />
   </head>

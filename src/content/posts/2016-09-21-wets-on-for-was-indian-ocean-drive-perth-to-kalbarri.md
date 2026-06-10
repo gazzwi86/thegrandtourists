@@ -1,5 +1,5 @@
 ---
-title: 'Wets on for WA&#8217;s Indian Ocean Drive: Perth to Kalbarri'
+title: 'Wets on for WA’s Indian Ocean Drive: Perth to Kalbarri'
 date: '2016-09-21'
 slug: wets-on-for-was-indian-ocean-drive-perth-to-kalbarri
 permalink: 2016/09/21/wets-on-for-was-indian-ocean-drive-perth-to-kalbarri

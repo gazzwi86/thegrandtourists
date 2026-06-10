@@ -39,17 +39,20 @@ const navLinks = [
     <nav class="site-nav" aria-label="Main navigation">
       <ul class="nav-list">
         {
-          navLinks.map(({ href, label }) => (
-            <li>
-              <a
-                href={href}
-                aria-current={isActive(href) ? 'page' : undefined}
-                class={isActive(href) ? 'active' : ''}
-              >
-                {label}
-              </a>
-            </li>
-          ))
+          navLinks.map(({ href, label }) => {
+            const active = isActive(href)
+            return (
+              <li>
+                <a
+                  href={href}
+                  aria-current={active ? 'page' : undefined}
+                  class={active ? 'active' : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            )
+          })
         }
       </ul>
     </nav>

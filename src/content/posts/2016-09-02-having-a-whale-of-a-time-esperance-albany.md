@@ -3,9 +3,9 @@ title: 'Having a whale of a time: Esperance to Albany'
 date: '2016-09-02'
 slug: having-a-whale-of-a-time-esperance-albany
 permalink: 2016/09/02/having-a-whale-of-a-time-esperance-albany
-excerpt: Our victory on the Nullabor crossing has unlocked Western Australia’s remote south west coast. We visit the whitest sand in the world at Lucky Bay, and find a w
+excerpt: Our victory on the Nullarbor crossing has unlocked Western Australia’s remote south west coast. We visit the whitest sand in the world at Lucky Bay, and find a w
 excerptHtml: |
-  <p>Our victory on the Nullabor crossing has unlocked Western Australia&#8217;s remote south west coast. We visit the whitest sand in the world at Lucky Bay, and find a whale nursery at the end of Fitzgerald National Park.</p>
+  <p>Our victory on the Nullarbor crossing has unlocked Western Australia&#8217;s remote south west coast. We visit the whitest sand in the world at Lucky Bay, and find a whale nursery at the end of Fitzgerald National Park.</p>
 featuredImage: /images/2016/09/33091894543_9676e51f36_o.webp
 featuredImageWidth: 5184
 featuredImageHeight: 3456
