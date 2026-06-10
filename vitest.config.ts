@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config'
+import { fileURLToPath } from 'url'
 
 export default defineConfig({
   test: {
@@ -7,6 +8,9 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json']
+    },
+    alias: {
+      'astro:content': fileURLToPath(new URL('./tests/__mocks__/astro-content.ts', import.meta.url)),
     }
   }
 })

@@ -32,7 +32,7 @@ function rewriteImageUrl(
 }
 
 function convertCaption(html: string): string {
-  const $ = cheerio.load(html, { decodeEntities: false })
+  const $ = cheerio.load(html, {})
   $('[data-shortcode="caption"], div.wp-caption').each((_i, el) => {
     const $el = $(el)
     $el.removeAttr('style')
@@ -46,7 +46,7 @@ function convertCaption(html: string): string {
 }
 
 function unwrapAttachmentLinks(html: string, postSlugs: string[]): string {
-  const $ = cheerio.load(html, { decodeEntities: false })
+  const $ = cheerio.load(html, {})
   $('a').each((_i, el) => {
     const $a = $(el)
     const href = $a.attr('href') ?? ''
@@ -62,7 +62,7 @@ function unwrapAttachmentLinks(html: string, postSlugs: string[]): string {
 }
 
 function rewriteInternalLinks(html: string): string {
-  const $ = cheerio.load(html, { decodeEntities: false })
+  const $ = cheerio.load(html, {})
   $('a[href]').each((_i, el) => {
     const $a = $(el)
     const href = $a.attr('href') ?? ''
