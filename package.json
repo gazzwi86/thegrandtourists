@@ -34,6 +34,7 @@
     "astro-pagefind": "^1.7.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.49.0",
     "@typescript-eslint/parser": "^8.0.0",
@@ -56,7 +57,9 @@
     "vitest": "^3.0.0"
   },
   "lint-staged": {
-    "*.{ts,astro}": ["eslint --fix"],
+    "*.{ts,astro}": [
+      "eslint --fix"
+    ],
     "*.{ts,astro,css,md}": "prettier --write"
   }
 }

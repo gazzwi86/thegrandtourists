@@ -164,7 +164,7 @@ function rewriteInternalLinks($: cheerio.CheerioAPI): void {
   $('a[href]').each((_, el) => {
     const a = $(el)
     const href = a.attr('href') || ''
-    const match = href.match(/https?:\/\/thegrandtourists\.net(\/\d{4}\/\d{2}\/\d{2}\/[^"'\s]+)/)
+    const match = href.match(/https?:\/\/thegrandtourists\.(?:net|wordpress\.com)(\/\d{4}\/\d{2}\/\d{2}\/[^"'\s]+)/)
     if (match) {
       a.attr('href', match[1])
     }
@@ -310,7 +310,7 @@ async function main() {
     // Round-trip validation
     let parsed: any
     try {
-      parsed = yaml.load(`---\n${yamlStr}---\n`)
+      parsed = yaml.load(yamlStr)
     } catch (e) {
       throw new Error(`YAML round-trip failed for post ${post.slug}: ${e}`)
     }

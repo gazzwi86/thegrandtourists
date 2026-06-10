@@ -1,0 +1,41 @@
+---
+title: 'Roaming the Flinders Ranges: Wilpena Pound to Blinman'
+date: '2016-08-07'
+slug: flinders-ranges-continued-wilpena-pound-blinman
+permalink: 2016/08/07/flinders-ranges-continued-wilpena-pound-blinman
+excerpt: In the second part of our Flinders Ranges trip we hiked iconic Wilpena Pound and followed the wiggly roads through to Blinman, South Australia’s highest town.
+excerptHtml: |
+  <p>In the second part of our Flinders Ranges trip we hiked iconic Wilpena Pound and followed the wiggly roads through to Blinman, South Australia&#8217;s highest town.</p>
+featuredImage: /images/2016/08/flinders-ranges-view-3.webp
+featuredImageWidth: 1024
+featuredImageHeight: 768
+featuredImageAlt: ''
+categories:
+  - australia
+tags:
+  - Blinman
+  - Flinders Ranges
+  - hiking
+  - road trip
+  - South Australia
+  - vanlife
+  - Wilpena Pound
+wpId: 137
+body: |
+  <p>From Trezona, we doubled back to Wilpena to catch the afternoon shuttle in to the Pound (realising after that we could have easily walked the three kms in). Its aboriginal name is Ikara, but it is called the Pound because the formation of the cliffs created a natural corral for livestock with only one small entrance/exit. We read through the misery of the colonial settlers, who overgrazed the area on the mandate of the Government, who dictated they must run 120,000 sheep and cattle in a space that could only deal with 10,000. Bonkers.</p>
+  <p>We climbed up to the Wangara viewpoint to get a better look at the interlocking cliffs. According to indigenous stories, Ikara was formed by two giant snakes who gatecrashed a party in the area, wreaking havoc by eating everyone except for a few special souls like Kingfisher Man and Wild Turkey Man. The snakes were then so full that they willed themselves to die, and turned to stone with their heads and tails interlocking in a circle. Don’t you just love that? They were in a food coma!</p>
+  <p>Walking back from the Pound we saw our very first echidna. I think we watched him for about 20 mins, outstaying the Grey Nomads, who are supposed to be all over this nature stuff.</p>
+  <p>On our way out of the Ranges we went through Blinman, another ex-mining town that nows survives on its high quaint factor. Apparently Blinman is the highest point in all of South Australia, which isn’t saying much. We tried a quandong pie from the general store (it’s like a native peach) and then took the dirt road out of the park to Parachilna.</p>
+  <p>This drive turned out to be the most spectacular, and the most intense due to the quality of the road. It was very hilly and twisty and the second half of the road went through Parachilna Gorge, so there were chasms and boulders around every turn.</p>
+  <p><i>Highs: T</i>he booty sway of a waddling echidna |&nbsp;<i>Lows: </i>Can’t afford the dollarydoos for a scenic flight back over the Flinders Ranges</p>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-141" loading="eager" src="/images/2016/08/blinman-drive-2.webp" class="alignnone size-full wp-image-141" height="768" alt="Kangaroo road sign in Flinders Ranges, South Australia" width="1024" srcset="/images/2016/08/blinman-drive-2-600.webp 600w, /images/2016/08/blinman-drive-2-1200.webp 1200w, /images/2016/08/blinman-drive-2.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px" fetchpriority="high"><figcaption>They’re not lying about the roos</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-142" loading="lazy" src="/images/2016/08/blinman-drive.webp" class="alignnone size-full wp-image-142" height="768" alt="Winding road out of Blinman, Flinders Ranges" width="1024" srcset="/images/2016/08/blinman-drive-600.webp 600w, /images/2016/08/blinman-drive-1200.webp 1200w, /images/2016/08/blinman-drive.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Follow the wiggly road</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-143" loading="lazy" src="/images/2016/08/blinman.webp" class="alignnone size-full wp-image-143" height="1024" alt="Vintage telephone booth in Blinman, Flinders Ranges" width="768" srcset="/images/2016/08/blinman-600.webp 600w, /images/2016/08/blinman-1200.webp 1200w, /images/2016/08/blinman.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Where SA Superman suits up</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-144" loading="lazy" src="/images/2016/08/echidna.webp" class="alignnone size-full wp-image-144" height="3456" alt="Echidna in Wilpena Pound, South Australia" width="5184" srcset="/images/2016/08/echidna-600.webp 600w, /images/2016/08/echidna-1200.webp 1200w, /images/2016/08/echidna.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>First echidna sighting!</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-145" loading="lazy" src="/images/2016/08/flinders-ranges-view-2.webp" class="alignnone size-full wp-image-145" height="3456" alt="View from Wangara lookout, Wilpena Pound" width="5184" srcset="/images/2016/08/flinders-ranges-view-2-600.webp 600w, /images/2016/08/flinders-ranges-view-2-1200.webp 1200w, /images/2016/08/flinders-ranges-view-2.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Giant snakes form the walls of the Pound</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-146" loading="lazy" src="/images/2016/08/flinders-ranges-view-3.webp" class="alignnone size-full wp-image-146" height="768" alt="View of Wilpena Pound walls, Flinders Ranges, South Australia" width="1024" srcset="/images/2016/08/flinders-ranges-view-3-600.webp 600w, /images/2016/08/flinders-ranges-view-3-1200.webp 1200w, /images/2016/08/flinders-ranges-view-3.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Otherworldly Wilpena</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-147" loading="lazy" src="/images/2016/08/flinders-ranges-view1.webp" class="alignnone size-full wp-image-147" height="3456" alt="Flinders Ranges views" width="5184" srcset="/images/2016/08/flinders-ranges-view1-600.webp 600w, /images/2016/08/flinders-ranges-view1-1200.webp 1200w, /images/2016/08/flinders-ranges-view1.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Layer upon layer upon layer</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-148" loading="lazy" src="/images/2016/08/wilpena-lookout.webp" class="alignnone size-full wp-image-148" height="724" alt="Shelley at Wilpena Pound lookout, Flinders Ranges, South Australia" width="1086" srcset="/images/2016/08/wilpena-lookout-600.webp 600w, /images/2016/08/wilpena-lookout-1200.webp 1200w, /images/2016/08/wilpena-lookout.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Right in the crack</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-149" loading="lazy" src="/images/2016/08/wilpena-pound-view-1.webp" class="alignnone size-full wp-image-149" height="3456" alt="Walls of Wilpena Pound from within, Flinders Ranges" width="5184" srcset="/images/2016/08/wilpena-pound-view-1-600.webp 600w, /images/2016/08/wilpena-pound-view-1-1200.webp 1200w, /images/2016/08/wilpena-pound-view-1.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Majestic as…</figcaption></figure>
+  <figure class="wp-caption"><img aria-describedby="caption-attachment-150" loading="lazy" src="/images/2016/08/wilpena-selfie.webp" class="alignnone size-full wp-image-150" height="768" alt="Wilpena Pound selfie, Flinders Ranges" width="1024" srcset="/images/2016/08/wilpena-selfie-600.webp 600w, /images/2016/08/wilpena-selfie-1200.webp 1200w, /images/2016/08/wilpena-selfie.webp 1440w" sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1440px"><figcaption>Ruining views since 2015</figcaption></figure>
+---
