@@ -24,10 +24,10 @@ const {
   title,
   description,
   canonicalUrl = Astro.url.href,
-  ogImage = '/og-default.jpg',
+  ogImage = '/images/2019/02/img_3684-1.webp',
   type = 'website',
   showHero = false,
-  article,
+  article
 } = Astro.props
 
 const siteName = SITE_TITLE
@@ -63,61 +63,81 @@ const ogImageUrl = new URL(ogImage, Astro.site || SITE_URL).href
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:site" content="@grandtourists" />
 
-    {article && (
-      <>
-        <meta property="article:published_time" content={article.publishedTime} />
-        {article.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime} />}
-        {article.tags.map((tag) => <meta property="article:tag" content={tag} />)}
-      </>
-    )}
+    {
+      article && (
+        <>
+          <meta property="article:published_time" content={article.publishedTime} />
+          {article.modifiedTime && (
+            <meta property="article:modified_time" content={article.modifiedTime} />
+          )}
+          {article.tags.map((tag) => (
+            <meta property="article:tag" content={tag} />
+          ))}
+        </>
+      )
+    }
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <!-- JSON-LD -->
-    {type === 'article' && article ? (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: title,
-        datePublished: article.publishedTime,
-        dateModified: article.modifiedTime || article.publishedTime,
-        author: { '@type': 'Person', name: 'Shelley & Gareth', url: SITE_URL },
-        publisher: {
-          '@type': 'Organization',
-          name: SITE_TITLE,
-          url: SITE_URL,
-          logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
-        },
-        image: ogImageUrl,
-        description: description,
-        keywords: article.tags.join(', '),
-        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
-      })} />
-    ) : (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Blog',
-        name: SITE_TITLE,
-        description: SITE_TAGLINE,
-        url: SITE_URL,
-        author: { '@type': 'Person', name: 'Shelley & Gareth' },
-      })} />
-    )}
+    {
+      type === 'article' && article ? (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: title,
+            datePublished: article.publishedTime,
+            dateModified: article.modifiedTime || article.publishedTime,
+            author: { '@type': 'Person', name: 'Shelley & Gareth', url: SITE_URL },
+            publisher: {
+              '@type': 'Organization',
+              name: SITE_TITLE,
+              url: SITE_URL,
+              logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` }
+            },
+            image: ogImageUrl,
+            description: description,
+            keywords: article.tags.join(', '),
+            mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl }
+          })}
+        />
+      ) : (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Blog',
+            name: SITE_TITLE,
+            description: SITE_TAGLINE,
+            url: SITE_URL,
+            author: { '@type': 'Person', name: 'Shelley & Gareth' }
+          })}
+        />
+      )
+    }
 
     <!-- Google Analytics (conditional) -->
-    {GA4_ID && (
-      <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
-        <script is:inline define:vars={{ GA4_ID }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', GA4_ID);
+    {
+      GA4_ID && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
+          {/* prettier-ignore */}
+          <script is:inline define:vars={{ GA4_ID }}>
+          window.dataLayer = window.dataLayer || []
+          window.gtag = function () { window.dataLayer.push(arguments) }
+          window.gtag('js', new Date())
+          window.gtag('config', GA4_ID)
         </script>
-      </>
-    )}
+        </>
+      )
+    }
+
+    <!-- Named head slot for rel=prev/next and other per-page head tags -->
+    <slot name="head" />
   </head>
   <body>
     <!-- Skip to main content (WCAG 2.4.1) -->

@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE } from '../config/site'
+import { SITE_TITLE, SITE_TAGLINE, HERO_IMAGE } from '../config/site'
 
 interface Props {
   showHero?: boolean
@@ -17,27 +17,45 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/category/australia/', label: 'Australia' },
   { href: '/category/new-zealand/', label: 'New Zealand' },
-  { href: '/category/south-america/', label: 'South America' },
+  { href: '/category/south-america/', label: 'South America' }
 ]
 ---
 
-<header class={`site-header${showHero ? ' has-hero' : ''}`} role="banner">
+<header
+  class={`site-header${showHero ? ' has-hero' : ''}`}
+  style={showHero
+    ? `background-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${HERO_IMAGE}')`
+    : undefined}
+  role="banner"
+>
   <div class="container">
-    <a href="/" class="site-title">{SITE_TITLE}</a>
+    {
+      showHero ? (
+        <h1 class="site-title">
+          <a href="/">{SITE_TITLE}</a>
+        </h1>
+      ) : (
+        <a href="/" class="site-title">
+          {SITE_TITLE}
+        </a>
+      )
+    }
     <p class="site-tagline">{SITE_TAGLINE}</p>
     <nav class="site-nav" aria-label="Main navigation">
       <ul class="nav-list">
-        {navLinks.map(({ href, label }) => (
-          <li>
-            <a
-              href={href}
-              aria-current={isActive(href) ? 'page' : undefined}
-              class={isActive(href) ? 'active' : ''}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                aria-current={isActive(href) ? 'page' : undefined}
+                class={isActive(href) ? 'active' : ''}
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>

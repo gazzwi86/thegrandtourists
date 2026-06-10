@@ -7,7 +7,7 @@ import { SITE_TITLE, CATEGORIES } from '../../../config/site'
 
 export async function getStaticPaths() {
   return Object.keys(CATEGORIES).map((slug) => ({
-    params: { category: slug },
+    params: { category: slug }
   }))
 }
 
@@ -21,28 +21,35 @@ const { posts, hasNext } = paginatePosts(allCatPosts, 1)
   title={`${categoryLabel} | ${SITE_TITLE}`}
   description={`Travel posts about ${categoryLabel}`}
 >
+  {hasNext && <link slot="head" rel="next" href={`/category/${category}/page/2/`} />}
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
         <h1 class="archive-title">{categoryLabel}</h1>
         <div class="post-grid">
-          {posts.map((post) => (
-            <PostCard
-              title={post.data.title}
-              permalink={post.data.permalink}
-              date={post.data.date}
-              excerpt={post.data.excerpt}
-              featuredImage={post.data.featuredImage}
-              featuredImageAlt={post.data.featuredImageAlt}
-              categories={post.data.categories}
-            />
-          ))}
+          {
+            posts.map((post) => (
+              <PostCard
+                title={post.data.title}
+                permalink={post.data.permalink}
+                date={post.data.date}
+                excerpt={post.data.excerpt}
+                featuredImage={post.data.featuredImage}
+                featuredImageAlt={post.data.featuredImageAlt}
+                categories={post.data.categories}
+              />
+            ))
+          }
         </div>
-        {hasNext && (
-          <nav class="pagination" aria-label="Page navigation">
-            <a href={`/category/${category}/page/2/`} aria-label="Next page">Older posts &rarr;</a>
-          </nav>
-        )}
+        {
+          hasNext && (
+            <nav class="pagination" aria-label="Page navigation">
+              <a href={`/category/${category}/page/2/`} aria-label="Next page">
+                Older posts &rarr;
+              </a>
+            </nav>
+          )
+        }
       </div>
       <Sidebar />
     </div>

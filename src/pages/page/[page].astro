@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     const page = i + 2
     return {
       params: { page: String(page) },
-      props: { page },
+      props: { page }
     }
   })
 }
@@ -23,40 +23,48 @@ export async function getStaticPaths() {
 const { page } = Astro.props
 const allPosts = await getSortedPosts()
 const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allPosts, page)
+const prevHref = page === 2 ? '/' : `/page/${page - 1}/`
+const nextHref = `/page/${page + 1}/`
 ---
 
-<Base
-  title={`Page ${page} | ${SITE_TITLE}`}
-  description={SITE_TAGLINE}
->
+<Base title={`Page ${page} | ${SITE_TITLE}`} description={SITE_TAGLINE}>
+  {hasPrev && <link slot="head" rel="prev" href={prevHref} />}
+  {hasNext && <link slot="head" rel="next" href={nextHref} />}
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
+        <h1 class="sr-only">Latest Posts — Page {page}</h1>
         <div class="post-grid">
-          {posts.map((post) => (
-            <PostCard
-              title={post.data.title}
-              permalink={post.data.permalink}
-              date={post.data.date}
-              excerpt={post.data.excerpt}
-              featuredImage={post.data.featuredImage}
-              featuredImageAlt={post.data.featuredImageAlt}
-              categories={post.data.categories}
-            />
-          ))}
+          {
+            posts.map((post) => (
+              <PostCard
+                title={post.data.title}
+                permalink={post.data.permalink}
+                date={post.data.date}
+                excerpt={post.data.excerpt}
+                featuredImage={post.data.featuredImage}
+                featuredImageAlt={post.data.featuredImageAlt}
+                categories={post.data.categories}
+              />
+            ))
+          }
         </div>
         <nav class="pagination" aria-label="Page navigation">
-          {hasPrev && (
-            <a href={page === 2 ? '/' : `/page/${page - 1}/`} aria-label="Previous page">
-              &larr; Newer
-            </a>
-          )}
+          {
+            hasPrev && (
+              <a href={prevHref} aria-label="Previous page">
+                &larr; Newer
+              </a>
+            )
+          }
           <span class="current">{page} / {totalPages}</span>
-          {hasNext && (
-            <a href={`/page/${page + 1}/`} aria-label="Next page">
-              Older &rarr;
-            </a>
-          )}
+          {
+            hasNext && (
+              <a href={nextHref} aria-label="Next page">
+                Older &rarr;
+              </a>
+            )
+          }
         </nav>
       </div>
       <Sidebar />

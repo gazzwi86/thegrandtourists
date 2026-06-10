@@ -1,10 +1,30 @@
 import js from '@eslint/js'
+import tsParser from '@typescript-eslint/parser'
 import astro from 'eslint-plugin-astro'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 
 export default [
   js.configs.recommended,
+  // TypeScript files
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser: tsParser,
+    },
+  },
   ...astro.configs.recommended,
+  // Astro files: use TypeScript parser for script blocks
+  {
+    files: ['**/*.astro'],
+    languageOptions: {
+      parserOptions: {
+        parser: tsParser,
+      },
+      globals: {
+        PagefindUI: 'readonly',
+      },
+    },
+  },
   {
     plugins: { 'jsx-a11y': jsxA11y },
     rules: {

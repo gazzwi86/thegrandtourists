@@ -20,6 +20,12 @@ export function formatDate(date: Date): string {
   }).format(date)
 }
 
+export function buildSrcset(src: string): string {
+  if (!src.endsWith('.webp')) return src
+  const base = src.slice(0, -5)
+  return `${base}-600.webp 600w, ${base}-1200.webp 1200w, ${src} 1440w`
+}
+
 export function paginatePosts<T>(items: T[], page: number, perPage = 10) {
   const totalPages = Math.ceil(items.length / perPage)
   const start = (page - 1) * perPage

@@ -1,5 +1,5 @@
 ---
-import { formatDate } from '../lib/posts'
+import { formatDate, buildSrcset } from '../lib/posts'
 import { CATEGORIES } from '../config/site'
 
 interface Props {
@@ -19,37 +19,43 @@ const {
   excerpt,
   featuredImage,
   featuredImageAlt = '',
-  categories = [],
+  categories = []
 } = Astro.props
 
 const postUrl = `/${permalink}/`
 ---
 
 <article class="post-card">
-  {featuredImage && (
-    <a href={postUrl} tabindex="-1" aria-hidden="true">
-      <img
-        class="post-card__image"
-        src={featuredImage}
-        alt={featuredImageAlt}
-        loading="lazy"
-        width="672"
-        height="220"
-      />
-    </a>
-  )}
+  {
+    featuredImage && (
+      <a href={postUrl} tabindex="-1" aria-hidden="true">
+        <img
+          class="post-card__image"
+          src={featuredImage}
+          srcset={buildSrcset(featuredImage)}
+          sizes="(max-width: 600px) 600px, (max-width: 900px) 672px, 672px"
+          alt={featuredImageAlt}
+          loading="lazy"
+          width="672"
+          height="220"
+        />
+      </a>
+    )
+  }
 
   <div class="post-card__meta">
     <time datetime={date.toISOString()}>{formatDate(date)}</time>
-    {categories.map((cat) => (
-      <a
-        href={`/category/${cat}/`}
-        class="category-pill"
-        aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
-      >
-        {CATEGORIES[cat] ?? cat}
-      </a>
-    ))}
+    {
+      categories.map((cat) => (
+        <a
+          href={`/category/${cat}/`}
+          class="category-pill"
+          aria-label={`Category: ${CATEGORIES[cat] ?? cat}`}
+        >
+          {CATEGORIES[cat] ?? cat}
+        </a>
+      ))
+    }
   </div>
 
   <h2 class="post-card__title">
@@ -60,7 +66,5 @@ const postUrl = `/${permalink}/`
     <p>{excerpt}</p>
   </div>
 
-  <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}>
-    Read more &rarr;
-  </a>
+  <a href={postUrl} class="read-more" aria-label={`Read more about ${title}`}> Read more &rarr; </a>
 </article>

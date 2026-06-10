@@ -3,7 +3,6 @@ import { SIDEBAR_STATS, ABOUT_TEXT, SOCIAL } from '../config/site'
 ---
 
 <aside class="sidebar" aria-label="Sidebar">
-
   <!-- Roadtrip stats widget -->
   <div class="sidebar-widget">
     <h3>Our Aussie Roadtrip</h3>
@@ -14,7 +13,8 @@ import { SIDEBAR_STATS, ABOUT_TEXT, SOCIAL } from '../config/site'
       </li>
       <li>
         <span>Kilometres driven</span>
-        <span class="stats-number">{SIDEBAR_STATS.kilometresTravelled.toLocaleString('en-AU')}</span>
+        <span class="stats-number">{SIDEBAR_STATS.kilometresTravelled.toLocaleString('en-AU')}</span
+        >
       </li>
       <li>
         <span>Free camps</span>
@@ -53,8 +53,8 @@ import { SIDEBAR_STATS, ABOUT_TEXT, SOCIAL } from '../config/site'
     <script is:inline src="/pagefind/pagefind-ui.js"></script>
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function () {
-        if (typeof PagefindUI !== 'undefined') {
-          new PagefindUI({ element: '#search', showSubResults: false, resetStyles: false })
+        if (typeof window.PagefindUI !== 'undefined') {
+          new window.PagefindUI({ element: '#search', showSubResults: false, resetStyles: false })
         }
       })
     </script>
@@ -64,11 +64,30 @@ import { SIDEBAR_STATS, ABOUT_TEXT, SOCIAL } from '../config/site'
   <div class="sidebar-widget">
     <h3>Follow Along</h3>
     <div class="social-links">
-      <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">Instagram</a>
-      <a href={SOCIAL.twitter} target="_blank" rel="noopener noreferrer" aria-label="Follow on Twitter">Twitter</a>
-      <a href={SOCIAL.flickr} target="_blank" rel="noopener noreferrer" aria-label="View photos on Flickr">Flickr</a>
-      <a href={SOCIAL.pinterest} target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest">Pinterest</a>
+      <a
+        href={SOCIAL.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow on Instagram">Instagram</a
+      >
+      <a
+        href={SOCIAL.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow on Twitter">Twitter</a
+      >
+      <a
+        href={SOCIAL.flickr}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View photos on Flickr">Flickr</a
+      >
+      <a
+        href={SOCIAL.pinterest}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow on Pinterest">Pinterest</a
+      >
     </div>
   </div>
-
 </aside>

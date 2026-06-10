@@ -208,9 +208,8 @@ th {
   min-height: 240px;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
 }
 
 .site-title {
@@ -220,10 +219,16 @@ th {
   color: #fff;
   text-decoration: none;
   display: block;
-  margin-bottom: 0.25rem;
+  margin: 0 0 0.25rem;
 }
 
-.site-title:hover {
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title:hover,
+.site-title a:hover {
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
 }

@@ -6,34 +6,37 @@ import { getSortedPosts, paginatePosts } from '../lib/posts'
 import { SITE_TITLE, SITE_TAGLINE } from '../config/site'
 
 const allPosts = await getSortedPosts()
-const { posts, totalPages, hasNext } = paginatePosts(allPosts, 1)
+const { posts, hasNext } = paginatePosts(allPosts, 1)
 ---
 
-<Base
-  title={SITE_TITLE}
-  description={SITE_TAGLINE}
-  showHero={true}
->
+<Base title={SITE_TITLE} description={SITE_TAGLINE} showHero={true}>
+  {hasNext && <link slot="head" rel="next" href="/page/2/" />}
   <div class="container site-body">
     <div class="two-col">
       <div class="main-content">
         <div class="post-grid">
-          {posts.map((post) => (
-            <PostCard
-              title={post.data.title}
-              permalink={post.data.permalink}
-              date={post.data.date}
-              excerpt={post.data.excerpt}
-              featuredImage={post.data.featuredImage}
-              featuredImageAlt={post.data.featuredImageAlt}
-              categories={post.data.categories}
-            />
-          ))}
+          {
+            posts.map((post) => (
+              <PostCard
+                title={post.data.title}
+                permalink={post.data.permalink}
+                date={post.data.date}
+                excerpt={post.data.excerpt}
+                featuredImage={post.data.featuredImage}
+                featuredImageAlt={post.data.featuredImageAlt}
+                categories={post.data.categories}
+              />
+            ))
+          }
         </div>
         <nav class="pagination" aria-label="Page navigation">
-          {hasNext && (
-            <a href="/page/2/" aria-label="Next page">Older posts &rarr;</a>
-          )}
+          {
+            hasNext && (
+              <a href="/page/2/" aria-label="Next page">
+                Older posts &rarr;
+              </a>
+            )
+          }
         </nav>
       </div>
       <Sidebar />

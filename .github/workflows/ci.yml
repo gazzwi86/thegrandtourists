@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 env:
   NODE_VERSION: '22'
 
@@ -125,17 +128,26 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Sync assets to S3 (immutable cache)
+      - name: Sync versioned assets to S3 (immutable cache)
         run: |
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }} \
             --delete \
             --exclude "*.html" \
+            --exclude "sitemap*.xml" \
+            --exclude "robots.txt" \
+            --exclude "favicon.*" \
+            --exclude "pagefind/*" \
             --cache-control "public, max-age=31536000, immutable"
-      - name: Sync HTML to S3 (must-revalidate)
+      - name: Sync non-versioned assets to S3 (must-revalidate)
         run: |
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }} \
             --exclude "*" \
             --include "*.html" \
+            --include "sitemap*.xml" \
+            --include "robots.txt" \
+            --include "favicon.*" \
+            --include "pagefind/*" \
+            --delete \
             --cache-control "public, max-age=0, must-revalidate"
       - name: Invalidate CloudFront cache
         run: |
