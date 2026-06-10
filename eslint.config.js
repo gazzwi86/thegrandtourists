@@ -2,14 +2,16 @@ import js from '@eslint/js'
 import tsParser from '@typescript-eslint/parser'
 import astro from 'eslint-plugin-astro'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
+import globals from 'globals'
 
 export default [
   js.configs.recommended,
-  // TypeScript files
+  // TypeScript files — include Node.js globals for config files (process, __dirname, etc.)
   {
     files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
+      globals: globals.node,
     },
   },
   ...astro.configs.recommended,

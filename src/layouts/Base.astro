@@ -1,12 +1,13 @@
 ---
-import '../styles/global.css'
-import '@fontsource/abril-fatface/400.css'
 import '@fontsource/lato/400.css'
 import '@fontsource/lato/700.css'
 import '@fontsource/lato/400-italic.css'
 import '@fontsource/neuton/400.css'
 import '@fontsource/neuton/400-italic.css'
 import '@fontsource/oswald/400.css'
+// global.css must come after all @fontsource imports — it defines Abril Fatface @font-face
+// with font-display:optional (served from /fonts/) and any fontsource overrides rely on cascade order.
+import '../styles/global.css'
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_URL, SITE_TITLE, SITE_TAGLINE, GA4_ID } from '../config/site'
