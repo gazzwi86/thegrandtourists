@@ -12,7 +12,7 @@ const PAGES_TO_TEST = [
 
 // Screenshot regression tests
 for (const { url, name } of PAGES_TO_TEST) {
-  test(`screenshot: ${name}`, async ({ page, browserName }, testInfo) => {
+  test(`screenshot: ${name}`, async ({ page }, testInfo) => {
     await page.goto(`${BASE}${url}`)
     await page.waitForLoadState('networkidle')
     await expect(page).toHaveScreenshot(`${name}-${testInfo.project.name}.png`, {

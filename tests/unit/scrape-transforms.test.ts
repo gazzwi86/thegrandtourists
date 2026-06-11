@@ -45,7 +45,7 @@ function convertCaption(html: string): string {
   return $('body').html() ?? html
 }
 
-function unwrapAttachmentLinks(html: string, postSlugs: string[]): string {
+function unwrapAttachmentLinks(html: string, _postSlugs: string[]): string {
   const $ = cheerio.load(html, {})
   $('a').each((_i, el) => {
     const $a = $(el)

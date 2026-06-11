@@ -11,6 +11,7 @@ permissions:
 
 env:
   NODE_VERSION: '22'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   lint-typecheck:
@@ -107,6 +108,7 @@ jobs:
           name: lhci-report
           path: .lighthouseci/
           retention-days: 7
+          if-no-files-found: ignore
 
   deploy:
     runs-on: ubuntu-latest
