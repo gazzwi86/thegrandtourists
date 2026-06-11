@@ -1,0 +1,66 @@
+---
+import Base from '../../../layouts/Base.astro'
+import PostCard from '../../../components/PostCard.astro'
+import Sidebar from '../../../components/Sidebar.astro'
+import { getSortedPosts, tagSlug } from '../../../lib/posts'
+import { SITE_TITLE } from '../../../config/site'
+
+export async function getStaticPaths() {
+  const allPosts = await getSortedPosts()
+  const tagMap = new Map<string, { posts: typeof allPosts; label: string }>()
+
+  for (const post of allPosts) {
+    for (const tag of post.data.tags ?? []) {
+      const slug = tagSlug(tag)
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { posts: [], label: tag })
+      }
+      tagMap.get(slug)!.posts.push(post)
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([slug, { posts, label }]) => ({
+    params: { tag: slug },
+    props: { posts, tagLabel: label }
+  }))
+}
+
+interface Props {
+  posts: Awaited<ReturnType<typeof getSortedPosts>>
+  tagLabel: string
+}
+
+const { posts, tagLabel } = Astro.props
+---
+
+<Base
+  title={`Posts tagged "${tagLabel}" | ${SITE_TITLE}`}
+  description={`All posts tagged with ${tagLabel} on ${SITE_TITLE}`}
+>
+  <div class="container site-body">
+    <div class="two-col">
+      <div class="main-content">
+        <h1 class="archive-title">
+          <span class="archive-label">Tagged</span>
+          {tagLabel}
+        </h1>
+        <div class="post-grid">
+          {
+            posts.map((post) => (
+              <PostCard
+                title={post.data.title}
+                permalink={post.data.permalink}
+                date={post.data.date}
+                excerptHtml={post.data.excerptHtml ?? `<p>${post.data.excerpt}</p>`}
+                featuredImage={post.data.featuredImage}
+                featuredImageAlt={post.data.featuredImageAlt}
+                categories={post.data.categories}
+              />
+            ))
+          }
+        </div>
+      </div>
+      <Sidebar />
+    </div>
+  </div>
+</Base>

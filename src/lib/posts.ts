@@ -26,6 +26,15 @@ export function buildSrcset(src: string): string {
   return `${base}-600.webp 600w, ${base}-1200.webp 1200w, ${src} 1440w`
 }
 
+export function tagSlug(tag: string): string {
+  return tag
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
 export function paginatePosts<T>(items: T[], page: number, perPage = 10) {
   const totalPages = Math.ceil(items.length / perPage)
   const start = (page - 1) * perPage

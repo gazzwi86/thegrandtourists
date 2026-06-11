@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro'
 import Sidebar from '../components/Sidebar.astro'
-import { getSortedPosts, formatDate } from '../lib/posts'
+import Lightbox from '../components/Lightbox.astro'
+import { getSortedPosts, formatDate, tagSlug } from '../lib/posts'
 import { SITE_URL, CATEGORIES } from '../config/site'
 
 export async function getStaticPaths() {
@@ -128,7 +129,9 @@ const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
           tags && tags.length > 0 && (
             <footer class="post-tags" aria-label="Post tags">
               {tags.map((tag: string) => (
-                <span class="tag">{tag}</span>
+                <a href={`/tag/${tagSlug(tag)}/`} class="tag">
+                  {tag}
+                </a>
               ))}
             </footer>
           )
@@ -157,4 +160,5 @@ const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
       <Sidebar />
     </div>
   </div>
+  <Lightbox />
 </Base>
