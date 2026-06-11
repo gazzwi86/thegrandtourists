@@ -73,20 +73,13 @@ const { posts, totalPages, hasPrev, hasNext } = paginatePosts(allCatPosts, page)
                 href={
                   page === 2 ? `/category/${category}/` : `/category/${category}/page/${page - 1}/`
                 }
-                aria-label="Previous page"
               >
                 &larr; Newer
               </a>
             )
           }
           <span class="current">{page} / {totalPages}</span>
-          {
-            hasNext && (
-              <a href={`/category/${category}/page/${page + 1}/`} aria-label="Next page">
-                Older &rarr;
-              </a>
-            )
-          }
+          {hasNext && <a href={`/category/${category}/page/${page + 1}/`}>Older &rarr;</a>}
         </nav>
       </div>
       <Sidebar />

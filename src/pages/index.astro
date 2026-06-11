@@ -85,13 +85,7 @@ const remainingPosts = posts.slice(1)
           }
         </div>
         <nav class="pagination" aria-label="Page navigation">
-          {
-            hasNext && (
-              <a href="/page/2/" aria-label="Next page">
-                Older posts &rarr;
-              </a>
-            )
-          }
+          {hasNext && <a href="/page/2/">Older posts &rarr;</a>}
         </nav>
       </div>
       <Sidebar />

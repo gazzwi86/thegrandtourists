@@ -44,9 +44,7 @@ const { posts, hasNext } = paginatePosts(allCatPosts, 1)
         {
           hasNext && (
             <nav class="pagination" aria-label="Page navigation">
-              <a href={`/category/${category}/page/2/`} aria-label="Next page">
-                Older posts &rarr;
-              </a>
+              <a href={`/category/${category}/page/2/`}>Older posts &rarr;</a>
             </nav>
           )
         }
