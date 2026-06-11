@@ -10,6 +10,9 @@ module.exports = {
       numberOfRuns: 3,
       settings: {
         chromeFlags: '--no-sandbox',
+        // Block image URLs so 404s (images are gitignored, not in CI build) don't appear
+        // as console errors and fail the errors-in-console best-practices audit.
+        blockedUrlPatterns: ['**/images/**'],
       },
     },
     assert: {
