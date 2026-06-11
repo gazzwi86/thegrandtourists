@@ -24,18 +24,20 @@ const navLinks = [
 
 <header class={`site-header${showHero ? ' has-hero' : ''}`} role="banner">
   <div class="container">
-    {
-      isHomepage ? (
-        <h1 class="site-title">
-          <a href="/">{SITE_TITLE}</a>
-        </h1>
-      ) : (
-        <a href="/" class="site-title">
-          {SITE_TITLE}
-        </a>
-      )
-    }
-    <p class="site-tagline">{SITE_TAGLINE}</p>
+    <div class="site-branding">
+      {
+        isHomepage ? (
+          <h1 class="site-title">
+            <a href="/">{SITE_TITLE}</a>
+          </h1>
+        ) : (
+          <a href="/" class="site-title">
+            {SITE_TITLE}
+          </a>
+        )
+      }
+      <p class="site-tagline">{SITE_TAGLINE}</p>
+    </div>
     <nav class="site-nav" aria-label="Main navigation">
       <ul class="nav-list">
         {
